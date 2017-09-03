@@ -1,15 +1,23 @@
 $(document).ready(function() {
-    var clock = $('.clock').FlipClock({
-        clockFace: 'DailyCounter',
-        autoStart: false,
-        callbacks: {
-            stop: function() {
-                console.log("The countdown ended");
-            }
-        }
-    });
+    var getTime = function() {
+            var wedding = new Date("2017-11-11T23:30:00.000Z"),
+                now = new Date();
+                differenceInSeconds = (wedding.getTime() - now.getTime()) / 1000;
 
-    clock.setTime(220880);
+            return Math.floor(differenceInSeconds);
+        },
+        clock = $('.clock').FlipClock({
+            clockFace: 'DailyCounter',
+            autoStart: false,
+            callbacks: {
+                stop: function() {
+                    console.log("The countdown ended");
+                }
+            }
+        }),
+        time = getTime();
+
+    clock.setTime(time);
     clock.setCountdown(true);
     clock.start();
 });
